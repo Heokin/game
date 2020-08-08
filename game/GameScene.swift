@@ -13,7 +13,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let spaceShipCategory: UInt32 = 0x1 << 0
     let asteroidCategory: UInt32 = 0x1 << 1
-    
+    // паралакс
+    var gameBackground: SKSpriteNode!
     // создаем свойства
     var score = 0
     var scoreLabel: SKLabelNode!
@@ -25,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -0.8)
         scene?.size = UIScreen.main.bounds.size
-      let gameBackground = SKSpriteNode(imageNamed: "background")
+       gameBackground = SKSpriteNode(imageNamed: "background")
         addChild(gameBackground)
         
         // инициализация
@@ -80,6 +81,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // создаем действие
             
             spaceGame.run(moveAction)
+            
+            let BGMoveAction = SKAction.move(to: CGPoint(x: -touchLocation.x / 50, y: -touchLocation.y / 50), duration: time)
+            gameBackground.run(BGMoveAction)
         }
     }
 
