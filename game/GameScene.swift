@@ -75,8 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let speed: CGFloat = 500
             let time = timeToDistance(distance: distance, speed: speed)
             let moveAction = SKAction.move(to: touchLocation, duration: time)
-            print("distance \(distance)")
-            print("time \(time)")
+            moveAction.timingMode = SKActionTimingMode.easeInEaseOut
                 
             // создаем действие
             
@@ -112,6 +111,10 @@ func createdangerous() -> SKSpriteNode {
     asteroid.physicsBody?.categoryBitMask = asteroidCategory
     asteroid.physicsBody?.collisionBitMask = spaceShipCategory
     asteroid.physicsBody?.contactTestBitMask = spaceShipCategory
+    
+    let asteroidSpeedX: CGFloat = 100.0
+    asteroid.physicsBody?.angularVelocity = CGFloat(drand48() * 2 - 1) * 3
+    asteroid.physicsBody?.velocity.dx = CGFloat(drand48() * 2 - 1) * asteroidSpeedX
     return asteroid
 }
     override func update(_ currentTime: TimeInterval) {
