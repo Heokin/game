@@ -31,8 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // инициализация
          spaceGame = SKSpriteNode(imageNamed: "mainImage")
-        spaceGame.xScale = 1.5
-        spaceGame.yScale = 1.5
+        spaceGame.xScale = 1
+        spaceGame.yScale = 1
         // physics
         spaceGame.physicsBody = SKPhysicsBody(texture: spaceGame.texture!, size: spaceGame.size)
         spaceGame.physicsBody?.isDynamic = false
